@@ -1,5 +1,5 @@
 name: easy_translation
-description: "A new Flutter package project."
+description: "Easy localization & internationalization (i18n) library."
 version: 0.0.1
 homepage: https://github.com/thruthesky/easy_translation
 

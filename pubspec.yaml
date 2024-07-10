@@ -1,6 +1,6 @@
 name: easy_locale
 description: "Easy localization & internationalization (i18n) library."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/thruthesky/easy_locale
 
 environment:

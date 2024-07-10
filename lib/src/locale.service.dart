@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_locale/easy_locale.dart';
 
 /// Locale Service
@@ -109,6 +111,8 @@ class LocaleService {
     /// If the text data is not found, return the key.
     final textData = textMap[locale] ?? textMap[fallbackLocale] ?? useKey;
 
+    log(textMap.toString());
+    log('textData: $textData');
     String text;
 
     if (textData is String) {

@@ -17,6 +17,19 @@ pub.dev 에는 여러가지 좋은 다국어(언어 번역) 패키지들이 있�
 
 본 `easy_locale` 패키지는 플러터 앱에서 로케일을 설정하지는 않지만, 앱에서 locale 설정을 해 주어야 합니다. 에를 들면, 아이폰이 한국어로 설정된 경우, 앱에서도 한글로 표시하는 것이 자연스러울 것입니다. 즉, 장치의 언어 설정을 따라서 표시하기 위해서는 iOS 의 `Info.plist` 에 지원한 언어 목록을 `CFBundleLocalizations` 에 추가를 해 주어야 합니다.
 
+아래는 `ios/Runner/Info.plist` 파일에 언어 설정을 추가한 예제입니다.
+
+```xml
+<key>CFBundleLocalizations</key>
+<array>
+	<string>en</string>
+	<string>ch</string>
+	<string>ja</string>
+	<string>ko</string>
+</array>
+```
+
+
 안드로이드에서는 따로 설정 할 것이 없습니다.
 
 
@@ -121,6 +134,7 @@ expect('apple'.tr(args: {'name': 'J', 'n': n}, form: n), 'J has 3 apples.');
 
 
 
+
 ### 번역 문장 추가 또는 업데이트
 
 `TranslationService.instance.set()` 를 사용하면 기존의 존재하는 번역 문자열을 다른 것 변경 할 수 있다. 또는 기존에 존재하지 않는다면 추가를 하는 것이다. 따라서 앱에서 사용할 번역 문자열을 하우스 다국어 기능을 활용해 번역 할 수 있다.
@@ -156,4 +170,42 @@ final localeTexts = {
     }
 }
 ```
+
+
+
+### lo
+
+참고로 `LocalService.instance` 를 줄여서 `lo` 로 사용 할 수 있습니다.
+
+```dart
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    lo.init();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    lo.set(key: 'home title', locale: 'ko', value: '다국어 설정');
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('home title'.t),
+      ),
+      // ...
+    );
+  }
+}
+````
+
+
+
+
+## 유닛 테스트
+
+
+`test` 폴더에 있는 테스트 코드를 보고, 사용법을 익히셔도 됩니다.
+
+
 

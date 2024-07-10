@@ -1,18 +1,23 @@
-# 다국어
+# 다국어 번역
 
+앱을 개발 할 때, 한국어 뿐만아니라 영어, 중국어, 일본어 등등 여러가지 언어로 서비스할 때 필요한 다국어 번역 패키지입니다.
 
-pub.dev 에 좋은 다국어(언어 번역) 패키지들이 있다. 하지만 보다 쉽게 사용 할 수 있도록 `하우스`만의 다국어 기능을 만들었다.
+pub.dev 에는 여러가지 좋은 다국어(언어 번역) 패키지들이 있습니다만, 직접 써보니 번거로운 부분이 있어 직접 다국어 패키지를 만들었습니다.
 
-Flutter locale 을 사용하지 않는다. 따라서 Flutter 에 로케일 설정을 할 필요 없다. 단, iOS 의 Info.plist 에 `CFBundleLocalizations` 과 언어 목록을 추가한다. 물론 Flutter locale 을 사용하고 싶으면 해도 된다.
+본 패키지의 특징은
 
+- 플러터 앱에서 locale 을 적용하지 않아도 되며,
+- 사용 방법이 매우 단순하다
+
+것 입니다.
+
+참고로, 본 `easy_locale` 은 다른 다국어 패키지들과 함께 사용하셔도 됩니다.
 
 ## 설치
 
+본 `easy_locale` 패키지는 플러터 앱에서 로케일을 설정하지는 않지만, 앱에서 locale 설정을 해 주어야 합니다. 에를 들면, 아이폰이 한국어로 설정된 경우, 앱에서도 한글로 표시하는 것이 자연스러울 것입니다. 즉, 장치의 언어 설정을 따라서 표시하기 위해서는 iOS 의 `Info.plist` 에 지원한 언어 목록을 `CFBundleLocalizations` 에 추가를 해 주어야 합니다.
 
-
-### iOS
-
-- 안드로이드와는 다르게, iOS 에서는 사용하고자 하는 언어를 Info.plist 의 `CFBundleLocalizations`에 추가해 주어야 한다. 핸드폰 설정의 기본 언어가 한글이라도, 따로 CFBundleLocalizations 에 추가해 주어야 사용이 가능하다.
+안드로이드에서는 따로 설정 할 것이 없습니다.
 
 
 ## 초기화
@@ -57,7 +62,7 @@ TranslationService.instance.init(
 
 ### 번역 문자열
 
-번역 문자열은 `./lib/translation/translation.text.dart` 의 `translationTexts` 변수에 저장한다.
+번역 문자열은 `./lib/translation/translation.text.dart` 의 `localeTexts` 변수에 저장한다.
 
 
 ### 단순 문자열 번역 - t
@@ -82,7 +87,7 @@ form 파라메타에는 null 또는 0의 값이면 개체가 없고, 1의 값이
 번역 문자열을 저장 할 때에는 아래와 같은 형식으로 저장되어야 한다.
 
 ```dart
-final translationTexts = {
+final localeTexts = {
     'apple': {
         'en': {
             'zero': '{name} has no apple.',
@@ -136,7 +141,7 @@ expect('hello'.t == 'Hello', true);
 위와 같이 하면 `name` 이라는 언어 키에 아래와 같이 저장하면 된다. 특히, 단수/복수 처리를 잘 보면 된다.
 
 ```dart
-final translationTexts = {
+final localeTexts = {
     'name': {
         'en': 'Name',
         'ko': '이름',
